@@ -39,3 +39,16 @@ class ReplayMemory(object):
         
         if len(self.memory) > self.capacity:
             del self.memory[0]
+            
+    def sample(self, batch_size):
+        # if list = [(1,2,3), (4,5,6)] then zip(*list) = [(1,4), (2,5), (3,6)]
+        samples = zip(*random.sample(self.memory, batch_size))  
+        return map(lambda x: Variable(torch.cat(x, 0)), samples)
+
+
+        
+        
+        
+        
+        
+        
